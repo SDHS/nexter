@@ -1,0 +1,35 @@
+.features {
+  grid-column: center-start / center-end;
+
+  margin: 15rem 0;
+
+  display: grid;
+  // grid-template-columns: repeat(3, 1fr);
+  // we do not need to define rows now because we have already created 3 columns and given them all the space. So, after 3 items, a new row will automatically be created and placed in an implicit grid.
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(25rem, 1fr)
+  ); // to make it responsive without having to write media queries. Auto-fit will automatically create as many tracks as can fit using the width we have defined. Now it will automatically shift the cells down when there isn't space, creating more rows and reducing the columns.
+  grid-gap: 6rem;
+  // justify-items: center; // DELETE?
+  align-items: start;
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  // min-content for the icon, and rest (1fr) for the text
+  grid-row-gap: 1.5rem;
+  grid-column-gap: 2.5rem;
+  &__icon {
+    fill: $color-primary;
+    width: 4.5rem;
+    height: 4.5rem;
+    grid-row: 1 / span 2; // till the end We couldn't use -1 for 'til the end' because -1 actually means 'until the end of the EXPLICIT grid'. So, it won't work for rows created by the implicit grid.
+    transform: translateY(-1rem);
+  }
+
+  &__text {
+    font-size: 1.7rem;
+  }
+}
